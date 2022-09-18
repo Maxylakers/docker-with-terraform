@@ -145,3 +145,8 @@ data "azurerm_public_ip" "max-ip-data" {
   name = azurerm_public_ip.pip.name
   resource_group_name = azurerm_resource_group.RG.name
 }
+
+output "public_ip_address" {
+  value = "${azurerm_linux_virtual_machine.VM.name}: ${data.azurerm_public_ip.max-ip-data.ip_address}"
+  
+}
