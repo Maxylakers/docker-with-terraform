@@ -15,3 +15,12 @@ ssh -i ~/.ssh/terraformkey adminuser@40.68.162.244
 
 - While logged into the Linux VM, check system info:
 lsb_release -a
+
+
+Important!
+- Filter terraform project to reduce project size before push:
+git filter-branch -f --index-filter 'git rm --cached -r --ignore-unmatch .terraform/'
+
+
+* Aim
+- Using the Custom Data argument, we have bootstrapped our Linux instance and install the Docker engine. Which then allows us to have a linux instance deployed with Docker ready for deployment.
