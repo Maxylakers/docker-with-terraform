@@ -22,5 +22,10 @@ Important!
 git filter-branch -f --index-filter 'git rm --cached -r --ignore-unmatch .terraform/'
 
 
-* Aim
-- Using the Custom Data argument, we have bootstrapped our Linux instance and install the Docker engine. Which then allows us to have a linux instance deployed with Docker ready for deployment.
+-- Aim
+- Using the Custom Data argument, we have bootstrapped our Linux instance and install the Docker engine. Which then allows us to have a linux instance deployed with Docker ready for development.
+
+-- Using a Provisioner (unlike other resources, a provisioner's success or failure is not recorded or managed by state) to configure the VS code on our local terminal to be able to ssh into our remote VM directly at deployment.
+
+
+-- Next we use a Data Source to get the IP address of the server. This is best in areas where we do not have access to the state files of the deployments.

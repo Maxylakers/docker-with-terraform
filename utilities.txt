@@ -1,0 +1,12 @@
+Similar codeblock for Linux Os (also works for Mac as well) as seen in the windows-ssh-script.tpl file
+cat << EOF >> ~/.ssh/config
+
+Host ${hostname}
+  HostName ${hostname}
+  User ${user}
+  IdentityFile ${identityfile}
+EOF
+
+Important!
+- Filter terraform project to reduce project size before push:
+git filter-branch -f --index-filter 'git rm --cached -r --ignore-unmatch .terraform/'

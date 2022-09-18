@@ -122,8 +122,26 @@ resource "azurerm_linux_virtual_machine" "VM" {
     version   = "latest"
   }
 
+  provisioner "local-exec" {
+    command = templatefile("windows-ssh-script.tpl", {
+      hostname = self.public_ip_address,
+      user = "adminuser",
+      identityfile = "~/.ssh/terraformkey"
+    })
+    interpreter = [
+      "powershell", "-command"
+    ]
+    # For Linux interpreter:
+    # ["bash", "-c"]
+  }
+
   tags = {
     "environment" = "Max-dev"
   }
 
+}
+
+data "azurerm_public_ip" "max-ip-data" {
+  name = azurerm_public_ip.pip.name
+  resource_group_name = azurerm_resource_group.RG.name
 }
