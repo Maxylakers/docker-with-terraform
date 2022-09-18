@@ -10,3 +10,9 @@ EOF
 Important!
 - Filter terraform project to reduce project size before push:
 git filter-branch -f --index-filter 'git rm --cached -r --ignore-unmatch .terraform/'
+
+- use command below to pass host_os type during terraform console operations:
+terraform console -var="host_os=linux"
+
+- To reference the osx.tfvars file, use:
+terraform console -var-file="osx.tfvars"

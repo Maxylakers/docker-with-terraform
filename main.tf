@@ -123,14 +123,15 @@ resource "azurerm_linux_virtual_machine" "VM" {
   }
 
   provisioner "local-exec" {
-    command = templatefile("windows-ssh-script.tpl", {
+    command = templatefile("${var.host_os}-ssh-script.tpl", {
       hostname = self.public_ip_address,
       user = "adminuser",
       identityfile = "~/.ssh/terraformkey"
     })
-    interpreter = [
-      "powershell", "-command"
-    ]
+    interpreter = var.host_os == "windows" ? ["powershell", "-command"] : ["bash", "-c"]
+    # [
+    #   "bash", "-c"
+    # ]
     # For Linux interpreter:
     # ["bash", "-c"]
   }
